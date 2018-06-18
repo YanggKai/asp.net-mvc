@@ -1,0 +1,24 @@
+﻿@model IEnumerable<TotalMVC.ViewModel.BirthDateGroup>
+@{ 
+    ViewBag.Title = "Student Static Date";
+}
+<h3>@ViewBag.Title</h3>
+<div>
+    <table>
+        <tr>
+            <td>Birth Date</td>
+            <td>Student Count</td>
+        </tr>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model=>item.Birth)
+                </td>
+                <td>
+                    @item.StudentCount
+                </td>
+            </tr>
+        }
+    </table>
+</div>

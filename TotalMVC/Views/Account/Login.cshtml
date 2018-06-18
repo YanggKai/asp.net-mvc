@@ -1,0 +1,58 @@
+﻿@model TotalMVC.Models.Account
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+<link href="~/Content/diy.css" rel="stylesheet" />
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div class="form-horizontal inner">
+        <div>
+            <img src="~/Image/microsoft_logo.png" />
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("username", null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("请输入验证码", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("yanzhengma", null, htmlAttributes: new { @class = "form-control" })
+                <div class="yanzhengma">
+                    <div>
+                        @ViewBag.Message
+
+                    </div>
+
+                </div>
+                @Html.ActionLink("更换", "Login", new { code = ViewBag.Message })
+                <div>
+                    <img id="validate" src="~/Controllers/Tes11t" alt="验证码" />
+                </div>
+                <input type="hidden" name="code" value="@ViewBag.Message" />
+                @Html.ValidationMessage("yanzhengma", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-block btn-primary" />
+            </div>
+        </div>
+        <div style="background-color:white">
+        </div>
+    </div>
+}
